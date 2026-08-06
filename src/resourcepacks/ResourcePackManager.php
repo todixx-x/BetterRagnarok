@@ -27,14 +27,17 @@ namespace pocketmine\resourcepacks;
 
 use pocketmine\utils\Config;
 use pocketmine\utils\Filesystem;
+use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Filesystem\Path;
 use function array_keys;
+use function array_map;
 use function copy;
 use function count;
 use function file_exists;
 use function gettype;
+use function implode;
 use function is_array;
 use function is_dir;
 use function is_float;
@@ -134,6 +137,14 @@ class ResourcePackManager{
 		}
 
 		$logger->debug("Successfully loaded " . count($this->resourcePacks) . " resource packs");
+
+		//BetterRagnarok: log the list of loaded resource packs at info level so admins can see which packs are active.
+		$loadedPackNames = array_map(static fn(ResourcePack $pack) : string => TextFormat::LIGHT_PURPLE . $pack->getPackName() . TextFormat::RESET, $this->resourcePacks);
+		if(count($loadedPackNames) === 0){
+			$logger->info("Loaded resource packs: (none)");
+		}else{
+			$logger->info("Loaded resource packs: " . implode(", ", $loadedPackNames));
+		}
 	}
 
 	private function loadPackFromPath(string $packPath) : ResourcePack{
