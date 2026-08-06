@@ -1,0 +1,90 @@
+name: Build and Release Altay
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on release tags like v1.0.0, v2.1.0-alpha, etc.
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  build-and-release:
+    name: Build altay.phar & Upload
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer
+          ini-values: phar.readonly=0
+
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+        env:
+          COMPOSER_NO_INTERACTION: 1
+
+      - name: Update Version Info (Mark Stable Build)
+        run: |
+          php -r '
+            $path = "src/VersionInfo.php";
+            if (!file_exists($path)) {
+                echo "src/VersionInfo.php not found, skipping version bump...\n";
+                exit(0);
+            }
+            $contents = file_get_contents($path);
+            $patterns = [
+                "/IS_DEVELOPMENT_BUILD\s*=\s*true\s*;/i",
+                "/BUILD_CHANNEL\s*=\s*[\"\'][^\"\']+[\"\']\s*;/i"
+            ];
+            $replacements = [
+                "IS_DEVELOPMENT_BUILD = false;",
+                "BUILD_CHANNEL = \"stable\";"
+            ];
+            $updated = preg_replace($patterns, $replacements, $contents, -1, $count);
+            if ($count > 0) {
+                file_put_contents($path, $updated);
+                echo "Successfully updated VersionInfo.php ($count replacements).\n";
+            } else {
+                echo "Notice: No development build strings found to replace.\n";
+            }
+          '
+
+      - name: Build altay.phar
+        run: |
+          if [ -f "build/build.php" ]; then
+            php -d phar.readonly=0 build/build.php
+          else
+            php -d phar.readonly=0 -r '
+              $phar = new Phar("altay.phar");
+              $phar->buildFromDirectory(__DIR__);
+              $phar->setStub($phar->createDefaultStub("src/pocketmine/PocketMine.php"));
+            '
+          fi
+
+      - name: Verify PHAR Build
+        run: |
+          if [ ! -f "altay.phar" ]; then
+            echo "Error: altay.phar was not generated!"
+            exit 1
+          fi
+          echo "altay.phar successfully created."
+
+      - name: Upload Build Artifact (For Action Summary / Downloads)
+        uses: actions/upload-artifact@v4
+        with:
+          name: altay.phar
+          path: altay.phar
+          retention-days: 7
+
+      - name: Create GitHub Release and Upload PHAR
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: altay.phar
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
