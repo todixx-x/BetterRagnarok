@@ -1,7 +1,10 @@
-name: Build Ragnarok
+name: Build and Release Altay
 
 on:
   push:
+    branches:
+      - main
+      - master
     tags:
       - 'v*'
   workflow_dispatch:
