@@ -3,8 +3,8 @@ name: Build and Release Altay
 on:
   push:
     tags:
-      - 'v*' # Triggers on release tags like v1.0.0, v2.1.0-alpha, etc.
-  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+      - 'v*' # Triggers on release tags like v1.0.0, v2.1.0, etc.
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   build-and-release:
@@ -23,7 +23,7 @@ jobs:
           ini-values: phar.readonly=0
 
       - name: Install Composer Dependencies
-        run: composer install --no-dev --prefer-dist --optimize-autoloader
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --ignore-platform-reqs
         env:
           COMPOSER_NO_INTERACTION: 1
 
@@ -73,7 +73,7 @@ jobs:
           fi
           echo "altay.phar successfully created."
 
-      - name: Upload Build Artifact (For Action Summary / Downloads)
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: altay.phar
