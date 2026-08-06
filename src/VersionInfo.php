@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  */
 
 declare(strict_types=1);
@@ -32,14 +32,14 @@ use function is_int;
 use function str_repeat;
 
 final class VersionInfo{
-	public const NAME = "Ragnarok";
+	public const NAME = "BetterRagnarok";
 	public const BASE_VERSION = "5.44.2";
 	public const IS_DEVELOPMENT_BUILD = true;
 	public const BUILD_CHANNEL = "master";
 	public const GITHUB_URL = "https://github.com/todixx-x/BetterRagnarok";
 
 	/**
-	 * PocketMine-MP-specific version ID for world data. Used to determine what fixes need to be applied to old world
+	 * BetterRagnarok-specific version ID for world data. Used to determine what fixes need to be applied to old world
 	 * data (e.g. stuff saved wrongly by past versions).
 	 * This version supplements the Minecraft vanilla world version.
 	 *

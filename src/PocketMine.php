@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  *
  *
  */
@@ -37,6 +37,7 @@ namespace pocketmine {
 	use pocketmine\utils\Process;
 	use pocketmine\utils\ServerKiller;
 	use pocketmine\utils\Terminal;
+	use pocketmine\utils\TextFormat;
 	use pocketmine\utils\Timezone;
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\SetupWizard;
@@ -272,7 +273,7 @@ JIT_WARNING
 		}
 		require_once($bootstrap);
 
-		$composerGitHash = InstalledVersions::getReference('altayofficial/altay');
+		$composerGitHash = InstalledVersions::getReference('todixx-x/betterragnarok');
 		if($composerGitHash !== null){
 			//we can't verify dependency versions if we were installed without using git
 			$currentGitHash = explode("-", VersionInfo::GIT_HASH(), 2)[0];
@@ -289,7 +290,7 @@ JIT_WARNING
 		ErrorToExceptionHandler::set();
 
 		if(count(getopt("", [BootstrapOptions::VERSION])) > 0){
-			printf("%s %s (git hash %s) for Minecraft: Bedrock Edition %s\n", VersionInfo::NAME, VersionInfo::VERSION()->getFullVersion(true), VersionInfo::GIT_HASH(), ProtocolInfo::MINECRAFT_VERSION);
+			printf(TextFormat::LIGHT_PURPLE . "%s " . TextFormat::RESET . "%s" . TextFormat::DARK_PURPLE . " (git hash %s)" . TextFormat::RESET . " for Minecraft: Bedrock Edition %s\n", VersionInfo::NAME, VersionInfo::VERSION()->getFullVersion(true), VersionInfo::GIT_HASH(), ProtocolInfo::MINECRAFT_VERSION);
 			exit(0);
 		}
 
@@ -343,7 +344,7 @@ JIT_WARNING
 		}
 		$logFile = isset($opts[BootstrapOptions::NO_LOG_FILE]) ? null : Path::join($dataPath, "server.log");
 
-		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "Server", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "log_archive"));
+		$logger = new MainLogger($logFile, Terminal::hasFormattingCodes(), "BetterRagnarok", new \DateTimeZone(Timezone::get()), false, Path::join($dataPath, "log_archive"));
 		if($logFile === null){
 			$logger->notice("Logging to file disabled. Ensure logs are collected by other means (e.g. Docker logs).");
 		}

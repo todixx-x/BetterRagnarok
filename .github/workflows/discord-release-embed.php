@@ -26,10 +26,10 @@ function generateDiscordEmbed(string $version, string $channel, string $descript
 		$phpEmbedLink = "";
 	}
 	return [
-		"content" => "New Altay release: $version ($channel)",
+		"content" => "New BetterRagnarok release: $version ($channel)",
 		"embeds" => [
 			[
-				"title" => "New Altay release: $version ($channel)",
+				"title" => "New BetterRagnarok release: $version ($channel)",
 				"description" => <<<DESCRIPTION
 $description
 

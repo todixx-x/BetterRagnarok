@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  *
  *
  */

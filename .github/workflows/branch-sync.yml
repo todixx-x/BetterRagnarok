@@ -3,7 +3,7 @@ name: Sync primary branches
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: altay_branch_sync
+    types: betterragnarok_branch_sync
 
 jobs:
   merge:

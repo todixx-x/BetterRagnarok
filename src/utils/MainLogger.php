@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  */
 
 declare(strict_types=1);
@@ -37,7 +37,12 @@ use const PHP_EOL;
 class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	protected bool $logDebug;
 
-	private string $format = TextFormat::AQUA . "[%s] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
+	/**
+	 * BetterRagnarok uses a purple-themed logger.
+	 * The timestamp is wrapped in LIGHT_PURPLE brackets to give the console a distinct,
+	 * branded look that is easy to scan visually.
+	 */
+	private string $format = TextFormat::LIGHT_PURPLE . "[" . TextFormat::DARK_PURPLE . "%s" . TextFormat::LIGHT_PURPLE . "] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
 	private bool $useFormattingCodes = false;
 	private string $mainThreadName;
 	private string $timezone;
@@ -103,11 +108,11 @@ class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	}
 
 	public function notice($message){
-		$this->send($message, \LogLevel::NOTICE, "NOTICE", TextFormat::AQUA);
+		$this->send($message, \LogLevel::NOTICE, "NOTICE", TextFormat::LIGHT_PURPLE);
 	}
 
 	public function info($message){
-		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::WHITE);
+		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::DARK_PURPLE);
 	}
 
 	public function debug($message, bool $force = false){

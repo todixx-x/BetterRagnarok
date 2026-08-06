@@ -17,15 +17,15 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  */
 
 declare(strict_types=1);
 
 /**
- * PocketMine-MP is the Minecraft: PE multiplayer server software
- * Homepage: http://www.pocketmine.net/
+ * BetterRagnarok is a fork of PocketMine-MP / Altay. Lightweight, OOP based Minecraft: Bedrock Edition server software written in PHP
+ * Homepage: https://github.com/todixx-x/BetterRagnarok
  */
 namespace pocketmine;
 
@@ -996,10 +996,10 @@ class Server {
 			$this->network = new Network($this->logger);
 			$this->network->setName($this->getMotd());
 
-			$this->logger->info($this->language->translate(KnownTranslationFactory::pocketmine_server_info(
+			$this->logger->info(TextFormat::DARK_PURPLE . $this->language->translate(KnownTranslationFactory::pocketmine_server_info(
 				$this->getName(),
 				(VersionInfo::IS_DEVELOPMENT_BUILD ? TextFormat::YELLOW : "") . $this->getPocketMineVersion() . TextFormat::RESET
-			)));
+			)) . TextFormat::RESET);
 			$this->logger->info($this->language->translate(KnownTranslationFactory::pocketmine_server_license($this->getName())));
 
 			DefaultPermissions::registerCorePermissions();

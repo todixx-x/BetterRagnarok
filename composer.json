@@ -1,6 +1,6 @@
 {
-   "name": "altayofficial/altay",
-   "description": "A server software for Minecraft: Bedrock Edition written in PHP",
+   "name": "todixx-x/betterragnarok",
+   "description": "BetterRagnarok - a server software for Minecraft: Bedrock Edition written in PHP, forked from PocketMine-MP / Altay",
    "type": "project",
    "license": "LGPL-3.0",
    "require": {

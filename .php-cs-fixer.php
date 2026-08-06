@@ -68,8 +68,8 @@ the Free Software Foundation, either version 3 of the License, or
 Original work by the PocketMine Team.
 https://www.pocketmine.net/
 
-@author Altay Team
-@link https://github.com/altayofficial
+@author BetterRagnarok Team
+@link https://github.com/todixx-x/BetterRagnarok
 BODY,
 			'location' => 'after_open'
 		],

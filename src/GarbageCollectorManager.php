@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  */
 
 declare(strict_types=1);
@@ -101,7 +101,9 @@ final class GarbageCollectorManager{
 		$time = $end - $start;
 		$this->collectionTimeTotalNs += $time;
 		$this->runs++;
-		$this->logger->info(sprintf(
+		//BetterRagnarok: log GC runs at debug level so the console stays clean by default.
+		//The feature still runs on every cycle; enable --debug to see these messages.
+		$this->logger->debug(sprintf(
 			"Run #%d took %s ms (%s -> %s roots, %s cycles collected) - cumulative GC time: %s ms",
 			$this->runs,
 			number_format($time / 1_000_000, 2),

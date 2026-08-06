@@ -17,8 +17,8 @@
  * Original work by the PocketMine Team.
  * https://www.pocketmine.net/
  *
- * @author Altay Team
- * @link https://github.com/altayofficial
+ * @author BetterRagnarok Team
+ * @link https://github.com/todixx-x/BetterRagnarok
  */
 
 declare(strict_types=1);
@@ -26,7 +26,7 @@ declare(strict_types=1);
 namespace pocketmine;
 
 /**
- * Constants for all the command-line options that PocketMine-MP supports.
+ * Constants for all the command-line options that BetterRagnarok supports.
  * Other options not listed here can be used to override server.properties and pocketmine.yml values temporarily.
  *
  * @internal

@@ -6,7 +6,7 @@
 - [`composer`](https://getcomposer.org) available in your shell
 
 ## Custom PHP binaries
-Because Altay requires several non-standard PHP extensions and configuration, Zenith provides scripts to build custom binaries for running Zenith, as well as prebuilt binaries.
+Because BetterRagnarok requires several non-standard PHP extensions and configuration, PocketMine-MP provides scripts to build custom binaries for running BetterRagnarok, as well as prebuilt binaries.
 
 - [Prebuilt binaries](https://github.com/pmmp/PHP-Binaries/releases)
 - [Compile scripts](https://github.com/pmmp/php-build-scripts) are provided as a submodule in the path `build/php`
@@ -14,7 +14,7 @@ Because Altay requires several non-standard PHP extensions and configuration, Ze
 If you use a custom binary, you'll need to replace `composer` usages in this guide with `path/to/your/php path/to/your/composer.phar`.
 
 ## Setting up environment
-1. `git clone https://github.com/altayofficial/Altay.git`
+1. `git clone https://github.com/todixx-x/BetterRagnarok.git`
 2. `composer install`
 
 ## Checking out a different branch to build
@@ -24,10 +24,10 @@ If you use a custom binary, you'll need to replace `composer` usages in this gui
 ## Optimizing for release builds
 1. Add the flags `--no-dev --classmap-authoritative` to your `composer install` command. This will reduce build size and improve autoloading speed.
 
-## Building `Altay.phar`
-Run `composer make-server` using your preferred PHP binary. It'll drop a `Altay.phar` into the current working directory.
+## Building `BetterRagnarok.phar`
+Run `composer make-server` using your preferred PHP binary. It'll drop a `BetterRagnarok.phar` into the current working directory.
 
 You can also use the `--out` option to change the output filename.
 
-## Running Altay from source code
+## Running BetterRagnarok from source code
 Run `src/PocketMine.php` using your preferred PHP binary.

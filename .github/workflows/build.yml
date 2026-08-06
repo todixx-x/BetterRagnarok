@@ -1,4 +1,4 @@
-name: Build and Release Altay
+name: Build and Release BetterRagnarok
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-and-release:
-    name: Build altay.phar & Upload
+    name: Build BetterRagnarok.phar & Upload
     runs-on: ubuntu-latest
 
     steps:
@@ -57,14 +57,14 @@ if ($count > 0) {
 }
 PHP
 
-      - name: Build altay.phar
+      - name: Build BetterRagnarok.phar
         run: |
           if [ -f "build/build.php" ]; then
             php -d phar.readonly=0 build/build.php
           else
             php -d phar.readonly=0 <<'PHP'
 <?php
-$phar = new Phar("altay.phar");
+$phar = new Phar("BetterRagnarok.phar");
 $phar->buildFromDirectory(__DIR__);
 $phar->setStub($phar->createDefaultStub("src/pocketmine/PocketMine.php"));
 PHP
@@ -72,24 +72,24 @@ PHP
 
       - name: Verify PHAR Build
         run: |
-          if [ ! -f "altay.phar" ]; then
-            echo "Error: altay.phar was not generated!"
+          if [ ! -f "BetterRagnarok.phar" ]; then
+            echo "Error: BetterRagnarok.phar was not generated!"
             exit 1
           fi
-          echo "altay.phar successfully created."
+          echo "BetterRagnarok.phar successfully created."
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: altay.phar
-          path: altay.phar
+          name: BetterRagnarok.phar
+          path: BetterRagnarok.phar
           retention-days: 7
 
       - name: Create GitHub Release and Upload PHAR
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: altay.phar
+          files: BetterRagnarok.phar
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
