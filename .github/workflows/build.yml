@@ -1,4 +1,4 @@
-name: Build and Release Altay
+name: Build Ragnarok
 
 on:
   push:
