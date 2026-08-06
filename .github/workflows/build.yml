@@ -27,7 +27,7 @@ jobs:
         env:
           COMPOSER_NO_INTERACTION: 1
 
-      - name: Update Version Info (Mark Stable Build)
+- name: Update Version Info (Mark Stable Build)
         run: |
           php -r '
             $path = "src/VersionInfo.php";
