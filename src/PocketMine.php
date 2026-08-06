@@ -37,7 +37,6 @@ namespace pocketmine {
 	use pocketmine\utils\Process;
 	use pocketmine\utils\ServerKiller;
 	use pocketmine\utils\Terminal;
-	use pocketmine\utils\TextFormat;
 	use pocketmine\utils\Timezone;
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\SetupWizard;
@@ -290,7 +289,7 @@ JIT_WARNING
 		ErrorToExceptionHandler::set();
 
 		if(count(getopt("", [BootstrapOptions::VERSION])) > 0){
-			printf(TextFormat::LIGHT_PURPLE . "%s " . TextFormat::RESET . "%s" . TextFormat::DARK_PURPLE . " (git hash %s)" . TextFormat::RESET . " for Minecraft: Bedrock Edition %s\n", VersionInfo::NAME, VersionInfo::VERSION()->getFullVersion(true), VersionInfo::GIT_HASH(), ProtocolInfo::MINECRAFT_VERSION);
+			printf("%s %s (git hash %s) for Minecraft: Bedrock Edition %s\n", VersionInfo::NAME, VersionInfo::VERSION()->getFullVersion(true), VersionInfo::GIT_HASH(), ProtocolInfo::MINECRAFT_VERSION);
 			exit(0);
 		}
 

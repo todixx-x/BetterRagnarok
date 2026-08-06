@@ -38,9 +38,9 @@ class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	protected bool $logDebug;
 
 	/**
-	 * BetterRagnarok uses a purple-themed logger.
-	 * The timestamp is wrapped in LIGHT_PURPLE brackets to give the console a distinct,
-	 * branded look that is easy to scan visually.
+	 * BetterRagnarok swaps the cyan parts of the logger for purple to give the console a
+	 * distinct theme. The timestamp brackets use purple shades; everything else keeps
+	 * the original colours (e.g. INFO stays white).
 	 */
 	private string $format = TextFormat::LIGHT_PURPLE . "[" . TextFormat::DARK_PURPLE . "%s" . TextFormat::LIGHT_PURPLE . "] " . TextFormat::RESET . "%s[%s/%s]: %s" . TextFormat::RESET;
 	private bool $useFormattingCodes = false;
@@ -112,7 +112,7 @@ class MainLogger extends AttachableThreadSafeLogger implements \BufferedLogger{
 	}
 
 	public function info($message){
-		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::DARK_PURPLE);
+		$this->send($message, \LogLevel::INFO, "INFO", TextFormat::WHITE);
 	}
 
 	public function debug($message, bool $force = false){
