@@ -33,7 +33,7 @@ use function str_repeat;
 
 final class VersionInfo{
 	public const NAME = "Ragnarok";
-	public const BASE_VERSION = "5.44.0";
+	public const BASE_VERSION = "5.44.2";
 	public const IS_DEVELOPMENT_BUILD = false;
 	public const BUILD_CHANNEL = "master";
 	public const GITHUB_URL = "https://github.com/todixx-x/BetterRagnarok";
