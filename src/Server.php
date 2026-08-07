@@ -115,6 +115,7 @@ use pocketmine\utils\SignalHandler;
 use pocketmine\utils\Terminal;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
+use pocketmine\utils\devtools\DevToolsPermissions;
 use pocketmine\utils\devtools\FolderPluginLoader;
 use pocketmine\utils\devtools\commands\ExtractPluginCommand;
 use pocketmine\utils\devtools\commands\GeneratePluginCommand;
@@ -1011,6 +1012,7 @@ class Server {
 			$this->logger->info($this->language->translate(KnownTranslationFactory::pocketmine_server_license($this->getName())));
 
 			DefaultPermissions::registerCorePermissions();
+			DevToolsPermissions::register();
 
 			$this->commandMap = new SimpleCommandMap($this);
 

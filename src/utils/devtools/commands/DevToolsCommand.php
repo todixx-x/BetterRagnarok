@@ -37,7 +37,8 @@ use pocketmine\utils\TextFormat;
 abstract class DevToolsCommand extends Command{
 
 	public function __construct(string $name, string $description, string $usageMessage, string $permission){
-		parent::__construct($name, $description, $usageMessage, [$permission]);
+		parent::__construct($name, $description, $usageMessage, []);
+		$this->setPermission($permission);
 	}
 
 	protected function coloredHeader(string $title) : string{
