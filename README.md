@@ -34,10 +34,10 @@ If you want a Bedrock server you can actually make your own — fast, scriptable
 
 ## Getting started
 
-Grab the latest release from the [releases page](https://github.com/todixx-x/BetterRagnarok/releases/latest), drop the phar on a machine with PHP 8.1+ and the right extensions, and run it. That's the whole pitch.
+Grab the latest release from the [releases page](https://github.com/todixx-x/BetterRagnarok/releases/nightly), drop the phar on a machine with PHP 8.1+ and the right extensions, and run it. That's the whole pitch.
 
 ```bash
-curl -sL https://github.com/todixx-x/BetterRagnarok/releases/latest/download/BetterRagnarok.phar -o BetterRagnarok.phar
+curl -sL https://github.com/todixx-x/BetterRagnarok/releases/nightly/download/BetterRagnarok.phar -o BetterRagnarok.phar
 php BetterRagnarok.phar
 ```
 
