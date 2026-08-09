@@ -115,15 +115,6 @@ use pocketmine\utils\SignalHandler;
 use pocketmine\utils\Terminal;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
-use pocketmine\utils\devtools\DevToolsPermissions;
-use pocketmine\utils\devtools\FolderPluginLoader;
-use pocketmine\utils\devtools\commands\ExtractPluginCommand;
-use pocketmine\utils\devtools\commands\GeneratePluginCommand;
-use pocketmine\utils\devtools\commands\HandlerListByPluginCommand;
-use pocketmine\utils\devtools\commands\HandlerListCommand;
-use pocketmine\utils\devtools\commands\MakePluginCommand;
-use pocketmine\utils\devtools\commands\PermissionCheckCommand;
-use pocketmine\utils\devtools\commands\PermissionListCommand;
 use pocketmine\world\format\io\WorldProviderManager;
 use pocketmine\world\format\io\WritableWorldProviderManagerEntry;
 use pocketmine\world\generator\Generator;
@@ -1012,7 +1003,6 @@ class Server {
 			$this->logger->info($this->language->translate(KnownTranslationFactory::pocketmine_server_license($this->getName())));
 
 			DefaultPermissions::registerCorePermissions();
-			DevToolsPermissions::register();
 
 			$this->commandMap = new SimpleCommandMap($this);
 
@@ -1039,7 +1029,6 @@ class Server {
 			$this->pluginManager = new PluginManager($this, $this->configGroup->getPropertyBool(Yml::PLUGINS_LEGACY_DATA_DIR, true) ? null : Path::join($this->dataPath, "plugin_data"), $pluginGraylist);
 			$this->pluginManager->registerInterface(new PharPluginLoader($this->autoloader));
 			$this->pluginManager->registerInterface(new ScriptPluginLoader());
-			$this->pluginManager->registerInterface(new FolderPluginLoader($this->autoloader));
 
 			$providerManager = new WorldProviderManager();
 			if(
@@ -1073,15 +1062,6 @@ class Server {
 				$this->forceShutdownExit();
 				return;
 			}
-
-			//register embedded DevTools commands (makeplugin, extractplugin, genplugin, checkperm, listperms, handlers, handlersbyplugin)
-			$this->commandMap->register("betterragnarok", new MakePluginCommand());
-			$this->commandMap->register("betterragnarok", new ExtractPluginCommand());
-			$this->commandMap->register("betterragnarok", new GeneratePluginCommand());
-			$this->commandMap->register("betterragnarok", new PermissionCheckCommand());
-			$this->commandMap->register("betterragnarok", new PermissionListCommand());
-			$this->commandMap->register("betterragnarok", new HandlerListCommand());
-			$this->commandMap->register("betterragnarok", new HandlerListByPluginCommand());
 
 			if(!$this->startupPrepareWorlds()){
 				$this->forceShutdownExit();
